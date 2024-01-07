@@ -1,0 +1,52 @@
+<h1>Products</h1>
+
+<form [formGroup]="formularioProducto" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" cols="30" rows="10" formControlName="description"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" class="form-control" formControlName="stock">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="text" class="form-control" formControlName="price">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="text" class="form-control" formControlName="image">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <input type="checkbox" formControlName="isActive">
+    </div>
+    <input type="submit" value="Create" class="btn btn-success">
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{ product.description }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.image }}</td>
+            <td>{{ product.isActive }}</td>
+            <td>
+                <button class="btn btn-warning">Edit</button>
+                <button class="btn btn-danger" (click)="onClickDelete(product)" >Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

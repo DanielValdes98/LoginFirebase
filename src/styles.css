@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap');
+
+.footer {
+    font-family: 'Encode Sans', sans-serif;
+    background-color: rgba(0, 0, 0, 0);
+    color: #656973;
+    font-size: 16px;
+}
+
+.footer-pb {
+    font-weight: bold;
+    color: #D6C21D;
+}
+
+.footer-by {
+    text-decoration: none;
+    color: #656973;
+    font-weight: 700;
+}
+
+.footer-by:hover {
+    color: #1d7dd6;
+    transition: 0.3s;
+}

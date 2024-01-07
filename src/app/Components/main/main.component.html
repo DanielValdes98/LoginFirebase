@@ -1,0 +1,12 @@
+<h1>Página principal</h1>
+
+<h3>File attachment</h3>
+<input type="file" (change)="uploadImage($event)">
+
+<div class="images">
+    <img [src]="image" *ngFor="let image of images" width="200">
+</div>
+
+<div>
+    <button (click)="onClick()" class="btn btn-danger">Logout</button>
+</div>
