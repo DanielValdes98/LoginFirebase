@@ -58,6 +58,30 @@ export class LoginComponent implements OnInit {
           console.log("Login github error: ", error);
         })
     }
+
+    if (provider === 'microsoft') {
+      this._userService.loginWithMicrosoft()
+        .then(response => {
+          console.log(response);
+          this._router.navigate(['/main']);
+        })
+        .catch(error => {
+          alert(error);
+          console.log("Login microsoft error: ", error);
+        })
+    }
+
+    if (provider === 'facebook') {
+      this._userService.loginWithFacebook()
+        .then(response => {
+          console.log(response);
+          this._router.navigate(['/main']);
+        })
+        .catch(error => {
+          alert(error);
+          console.log("Login facebook error: ", error);
+        })
+    }
   }
 
 }

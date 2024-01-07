@@ -24,6 +24,7 @@
     <input type="submit" value="Create" class="btn btn-success">
 </form>
 
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -43,10 +44,24 @@
             <td>{{ product.image }}</td>
             <td>{{ product.isActive }}</td>
             <td>
-                <button class="btn btn-warning">Edit</button>
+                <button (click)="getProduct(product.id || '')" class="btn btn-info">Detail</button>
+                <button (click)="editProduct(product.id || '')" class="btn btn-warning">Edit</button>
+                <button (click)="saveProduct()" class="btn btn-info">Save</button>
                 <button class="btn btn-danger" (click)="onClickDelete(product)" >Delete</button>
             </td>
         </tr>
     </tbody>
 </table>
 
+<div class="detail">
+    <h2>Detail</h2>
+    <div class="content">
+        <ng-container *ngIf="product$ | async as product">
+            <h1>{{ product.description }}</h1>
+            <p>{{ product.stock }}</p>
+            <p>{{ product.price }}</p>
+            <p>{{ product.image }}</p>
+            <p>{{ product.isActive }}</p>
+        </ng-container>
+    </div>
+</div>

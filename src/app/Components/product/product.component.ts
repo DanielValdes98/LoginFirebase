@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Product } from 'src/app/Interfaces/product';
 import { ProductService } from 'src/app/Services/product.service';
+
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -14,6 +17,8 @@ export class ProductComponent implements OnInit {
 
   formularioProducto: FormGroup;  // Form to create or edit a product
   products: Product[];  // List of products
+  product$!: Observable<Product>; // To get the product to edit or show details
+  idProducto!: string; // Id of the product to edit
 
   constructor ( private _productService: ProductService, private fb: FormBuilder ) {
     
@@ -37,8 +42,8 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._productService.getProducts().subscribe(products => {
-      console.log("Products list (getProducts): ", products);
+    this._productService.listProducts().subscribe(products => {
+      // console.log("Products list (getProducts): ", products);
       this.products = products;
     })
   }
@@ -51,8 +56,22 @@ export class ProductComponent implements OnInit {
 
   async onSubmit() {
     console.log(this.formularioProducto.value);
-    const response = await this._productService.addProduct(this.formularioProducto.value);
+    const response = await this._productService.addProduct(this.formularioProducto.value).subscribe((res) => console.log(res));
     console.log(response);
+  }
+
+  async editProduct(id: string) {
+    this.idProducto = id;
+    await this._productService.getProduct(id).subscribe((data) => this.formularioProducto.patchValue(data));
+  }
+
+  saveProduct() {
+    this._productService.updateProduct(this.formularioProducto.value as Product, this.idProducto);
+  }
+
+  async getProduct(id: string) {
+    console.log("Id: ", id);
+    this.product$ = await this._productService.getProduct(id);
   }
 
 }
