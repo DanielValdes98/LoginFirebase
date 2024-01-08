@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="flex justify-content-between align-content-center align-items-center w-full">
+            <div>
+                <h1 class="font-bold">Container Images</h1>
+            </div>
+            <div class="flex justify-content-between align-content-center align-items-center">
+                <a [routerLink]="'/Pages/products-list'" class="btn btn-primary mr-3"><i class="bi bi-box-seam"></i> System Products</a>
+                <button (click)="logout()" class="btn btn-dark"><i class="bi bi-box-arrow-left"></i> Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    
+    <h2 class="font-bold"> File attachment </h2>
+    <span><b>If you attachment any image, it can't be deleted</b></span>
+    <br>
+    <input type="file" (change)="uploadImage($event)">
+
+    <div class="mt-4 container-images">
+        <img class="img-thumbnail" width="250" [src]="image" *ngFor="let image of images" style="margin: 0 5px;">
+    </div>
+</div>

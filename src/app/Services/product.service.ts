@@ -28,13 +28,7 @@ export class ProductService {
   }
 
   updateProduct(product: Product, id: string){
-    console.log("Product to update: ", product);
-    console.log("Id: ", id);
-
     const productDocRef = doc(this.firestore, 'products', id); // Search the product to update by id
-
-    console.log("Product doc ref: ", productDocRef);
-
     updateDoc(productDocRef,  { ...product }) // Update the product
   }
 

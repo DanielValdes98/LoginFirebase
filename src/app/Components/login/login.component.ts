@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(this.formLogin.value)
       .then(response => {
         console.log(response);
-        this._router.navigate(['/main']);
+        this._router.navigate(['/Pages/products-list']);
       })
       .catch(error => {
         alert(error);
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       this._userService.loginWithGoogle()
         .then(response => {
           console.log(response);
-          this._router.navigate(['/main']);
+          this._router.navigate(['/Pages/products-list']);
         })
         .catch(error => {
           alert(error);
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       this._userService.loginWithGithub()
         .then(response => {
           console.log(response);
-          this._router.navigate(['/main']);
+          this._router.navigate(['/Pages/products-list']);
         })
         .catch(error => {
           alert(error);
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       this._userService.loginWithMicrosoft()
         .then(response => {
           console.log(response);
-          this._router.navigate(['/main']);
+          this._router.navigate(['/Pages/products-list']);
         })
         .catch(error => {
           alert(error);
@@ -71,11 +71,12 @@ export class LoginComponent implements OnInit {
         })
     }
 
+    // Pending to implement, it has an error
     if (provider === 'facebook') {
       this._userService.loginWithFacebook()
         .then(response => {
           console.log(response);
-          this._router.navigate(['/main']);
+          this._router.navigate(['/Pages/products-list']);
         })
         .catch(error => {
           alert(error);

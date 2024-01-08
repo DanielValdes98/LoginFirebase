@@ -1,32 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../Services/user.service';
+import { UserService } from 'src/app/Services/user.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
-
 // uploadBytes: Permite de indicar donde es la referencia que vas a subir y cuál es el fichero que vas a subir
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-images',
+  templateUrl: './images.component.html',
+  styleUrls: ['./images.component.css']
 })
-export class MainComponent implements OnInit {
+export class ImagesComponent implements OnInit {
 
   images: string[];
 
-  constructor(
-    private _userService: UserService,
-    private _router: Router,
-    private _storage: Storage
-  ){ 
+  constructor( private _router: Router, private _storage: Storage, private _userService: UserService) {
     this.images = [];
-   }
+  }
 
   ngOnInit(): void {
     this.getImages();
   }
 
-  onClick() {
+  logout() {
     this._userService.logout()
       .then(() => {
         this._router.navigate(['/login']);
@@ -36,6 +31,7 @@ export class MainComponent implements OnInit {
       })
   }
 
+  // STORAGE (Images):
   uploadImage($event: any) {
     const file = $event.target.files[0];
     console.log(file);
